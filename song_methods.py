@@ -33,3 +33,20 @@ class SongMethods:
             timeout = 10
             )
         print(response.status_code)
+
+    #retrieve the artists albums (ALL)
+    def choose_albums(self):
+        url = https://musicbrainz.org/ws/2/release-group
+        parameters = {
+            "artist": self.artist_id,
+            "type": "album",
+            "fmt": "json",
+            "limit": 100}
+        response = requests.get(url, params=parameters)
+        response.raise_for_status()
+        albums = data["release-groups"]
+        for album in albums:
+            #store into album dict temporarily
+            self.albums[album["title"]] = album["id"]
+            print(album["title"])
+
